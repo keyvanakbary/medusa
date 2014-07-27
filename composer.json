@@ -1,0 +1,24 @@
+{
+    "name": "keyvanakbary/medusa",
+    "description": "Immutable and persistent data structures",
+    "keywords": ["immutable", "persistent", "data structures"],
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Keyvan Akbary",
+            "email": "kiwwito@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
+    "autoload": {
+        "psr-4": { "Medusa\\": "src/" }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
