@@ -67,4 +67,4 @@ operation | big-O
 isEmpty   | O(1)
 peek      | O(1)
 enqueue   | O(1)
-dequeue   | O(1) on average, O(N) on some cases
+dequeue   | O(1) in average, O(N) in some cases
