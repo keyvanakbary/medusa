@@ -2,6 +2,4 @@
 
 namespace Medusa\Queue;
 
-class QueueIsEmpty extends \RuntimeException
-{
-}
+class QueueIsEmpty extends \RuntimeException {}
