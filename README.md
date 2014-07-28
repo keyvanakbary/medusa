@@ -4,7 +4,7 @@
 
 *Immutable* and *persistent* data structures for PHP.
 
-Life would be a lot simpler if we had *immutable* data structures. Code would be more easy to understand, easy to test and free of side-effects. Beign *immutable* is not all, these data structures must be efficient. By making them *persistent*, collections reuse internal structure to minimize the number of operations needed to represent altered versions of an instance of a collection.
+Life would be a lot simpler if we had *immutable* data structures. Code would be easier to understand, easy to test and free of side-effects. Being *immutable* is not all, these data structures must be efficient. By making them *persistent*, collections reuse internal structure to minimize the number of operations needed to represent altered versions of an instance of a collection.
 
 ## Setup and Configuration
 Add the following to your `composer.json` file

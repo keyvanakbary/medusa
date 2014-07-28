@@ -33,4 +33,4 @@ class EmptyStack implements \IteratorAggregate, Stackable
     {
         return new \EmptyIterator;
     }
-} 
+}

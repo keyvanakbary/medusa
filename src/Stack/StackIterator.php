@@ -40,4 +40,4 @@ class StackIterator implements \Iterator
     {
         return !$this->current->isEmpty();
     }
-} 
+}
