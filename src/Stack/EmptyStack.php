@@ -2,7 +2,7 @@
 
 namespace Medusa\Stack;
 
-class EmptyStack implements Stackable
+class EmptyStack implements \IteratorAggregate, Stackable
 {
     public function isEmpty()
     {

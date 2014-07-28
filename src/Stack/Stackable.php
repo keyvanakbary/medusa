@@ -2,7 +2,7 @@
 
 namespace Medusa\Stack;
 
-interface Stackable extends \IteratorAggregate
+interface Stackable extends \Traversable
 {
     public function push($value);
 

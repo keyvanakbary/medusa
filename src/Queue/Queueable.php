@@ -2,7 +2,7 @@
 
 namespace Medusa\Queue;
 
-interface Queueable extends \IteratorAggregate
+interface Queueable extends \Traversable
 {
     public function isEmpty();
 
@@ -11,6 +11,4 @@ interface Queueable extends \IteratorAggregate
     public function enqueue($value);
 
     public function dequeue();
-
-    public function getIterator();
 }

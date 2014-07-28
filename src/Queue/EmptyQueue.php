@@ -4,7 +4,7 @@ namespace Medusa\Queue;
 
 use Medusa\Stack\Stack;
 
-class EmptyQueue implements Queueable
+class EmptyQueue implements \IteratorAggregate, Queueable
 {
     public function isEmpty()
     {

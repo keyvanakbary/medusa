@@ -2,7 +2,7 @@
 
 namespace Medusa\Stack;
 
-class Stack implements Stackable
+class Stack implements \IteratorAggregate, Stackable
 {
     private $head;
     private $tail;

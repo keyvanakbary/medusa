@@ -6,7 +6,7 @@ use Medusa\Stack\Stack;
 use Medusa\Stack\Stackable;
 use Medusa\Stack\StackIsEmpty;
 
-class Queue implements Queueable
+class Queue implements \IteratorAggregate, Queueable
 {
     private $forwards;
     private $backwards;
