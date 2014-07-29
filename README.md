@@ -30,7 +30,7 @@ Update the vendor libraries
 
 include 'vendor/autoload.php';
 
-$s = Medusa\Stack\Stack::createEmpty();
+$s = Medusa\Stack::createEmpty();
 
 $s1 = $s->push(1);
 $s2 = $s1->pop();
@@ -53,7 +53,7 @@ reverse   | O(N)
 <?php
 include 'vendor/autoload.php';
 
-$q = Medusa\Queue\Queue::createEmpty();
+$q = Medusa\Queue::createEmpty();
 
 $q1 = $q->enqueue(1);
 $q2 = $q1->dequeue();

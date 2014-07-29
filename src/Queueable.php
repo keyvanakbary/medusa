@@ -1,6 +1,6 @@
 <?php
 
-namespace Medusa\Queue;
+namespace Medusa;
 
 interface Queueable extends \Traversable
 {

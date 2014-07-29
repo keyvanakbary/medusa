@@ -1,6 +1,6 @@
 <?php
 
-namespace Medusa\Stack;
+namespace Medusa;
 
 interface Stackable extends \Traversable
 {

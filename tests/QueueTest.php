@@ -1,6 +1,6 @@
 <?php
 
-namespace Medusa\Queue;
+namespace Medusa;
 
 class QueueTest extends \PHPUnit_Framework_TestCase
 {

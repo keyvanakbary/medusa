@@ -1,6 +1,6 @@
 <?php
 
-namespace Medusa\Stack;
+namespace Medusa;
 
 class StackTest extends \PHPUnit_Framework_TestCase
 {
