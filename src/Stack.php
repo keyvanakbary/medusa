@@ -6,11 +6,13 @@ class Stack implements \IteratorAggregate, Stackable
 {
     private $head;
     private $tail;
+    private $count;
 
-    public function __construct($head, Stackable $tail)
+    public function __construct($head, Stackable $tail, $count)
     {
         $this->head = $head;
         $this->tail = $tail;
+        $this->count = $count;
     }
 
     public static function createEmpty()
@@ -30,7 +32,7 @@ class Stack implements \IteratorAggregate, Stackable
 
     public function push($value)
     {
-        return new Stack($value, $this);
+        return new Stack($value, $this, $this->count + 1);
     }
 
     public function pop()
@@ -46,6 +48,11 @@ class Stack implements \IteratorAggregate, Stackable
         }
 
         return $s;
+    }
+
+    public function count()
+    {
+        return $this->count;
     }
 
     public function getIterator()
@@ -71,7 +78,7 @@ class EmptyStack implements \IteratorAggregate, Stackable
 
     public function push($value)
     {
-        return new Stack($value, $this);
+        return new Stack($value, $this, 1);
     }
 
     public function pop()
@@ -82,6 +89,11 @@ class EmptyStack implements \IteratorAggregate, Stackable
     public function reverse()
     {
         return new \EmptyIterator;
+    }
+
+    public function count()
+    {
+        return 0;
     }
 
     public function getIterator()

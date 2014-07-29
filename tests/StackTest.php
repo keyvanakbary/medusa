@@ -112,4 +112,24 @@ class StackTest extends \PHPUnit_Framework_TestCase
 
         $this->assertValues(array(1, 2, 3), $s->reverse());
     }
+
+    /**
+     * @test
+     * @dataProvider provideStacksWithExpectedCount
+     */
+    public function itShouldCountNumberOfElements($values, $expectedCount)
+    {
+        $s = $this->createStack($values);
+
+        $this->assertEquals($expectedCount, $s->count());
+    }
+
+    public function provideStacksWithExpectedCount()
+    {
+        return array(
+            array(array(), 0),
+            array(array(1), 1),
+            array(array(1, 2, 3), 3)
+        );
+    }
 }

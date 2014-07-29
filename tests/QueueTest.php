@@ -102,4 +102,24 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
         $this->assertValues(array(1, 2, 3, 4), $s->enqueue(4));
     }
+
+    /**
+     * @test
+     * @dataProvider provideQueuesWithExpectedCount
+     */
+    public function itShouldCountNumberOfElements($values, $expectedCount)
+    {
+        $s = $this->createQueue($values);
+
+        $this->assertEquals($expectedCount, $s->count());
+    }
+
+    public function provideQueuesWithExpectedCount()
+    {
+        return array(
+            array(array(), 0),
+            array(array(1), 1),
+            array(array(1, 2, 3), 3)
+        );
+    }
 }

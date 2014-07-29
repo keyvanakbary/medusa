@@ -46,6 +46,7 @@ peek      | O(1)
 pop       | O(1)
 isEmpty   | O(1)
 reverse   | O(N)
+count     | O(1)
 
 ### Queue
 
@@ -68,3 +69,4 @@ isEmpty   | O(1)
 peek      | O(1)
 enqueue   | O(1)
 dequeue   | O(1) in average, O(N) in some cases
+count     | O(1)

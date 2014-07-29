@@ -6,11 +6,13 @@ class Queue implements \IteratorAggregate, Queueable
 {
     private $forwards;
     private $backwards;
+    private $count;
 
-    public function __construct(Stackable $forwards, Stackable $backwards)
+    public function __construct(Stackable $forwards, Stackable $backwards, $count)
     {
         $this->forwards = $forwards;
         $this->backwards = $backwards;
+        $this->count = $count;
     }
 
     public static function createEmpty()
@@ -34,7 +36,7 @@ class Queue implements \IteratorAggregate, Queueable
 
     public function enqueue($value)
     {
-        return new Queue($this->forwards, $this->backwards->push($value));
+        return new Queue($this->forwards, $this->backwards->push($value), $this->count + 1);
     }
 
     public function dequeue()
@@ -42,14 +44,19 @@ class Queue implements \IteratorAggregate, Queueable
         $f = $this->forwards->pop();
 
         if ($f->isEmpty()) {
-            return new Queue($f, $this->backwards);
+            return new Queue($f, $this->backwards, $this->count - 1);
         }
 
         if ($this->backwards->isEmpty()) {
             return Queue::createEmpty();
         }
 
-        return new Queue($this->backwards->reverse(), Stack::createEmpty());
+        return new Queue($this->backwards->reverse(), Stack::createEmpty(), $this->count - 1);
+    }
+
+    public function count()
+    {
+        return $this->count;
     }
 
     public function getIterator()
@@ -75,12 +82,17 @@ class EmptyQueue implements \IteratorAggregate, Queueable
 
     public function enqueue($value)
     {
-        return new Queue(Stack::createEmpty()->push($value), Stack::createEmpty());
+        return new Queue(Stack::createEmpty()->push($value), Stack::createEmpty(), 1);
     }
 
     public function dequeue()
     {
         throw new \RuntimeException("Can't dequeue empty queue");
+    }
+
+    public function count()
+    {
+        return 0;
     }
 
     public function getIterator()

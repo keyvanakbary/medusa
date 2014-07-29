@@ -11,4 +11,6 @@ interface Queueable extends \Traversable
     public function enqueue($value);
 
     public function dequeue();
+
+    public function count();
 }
