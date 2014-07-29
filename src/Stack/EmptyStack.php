@@ -11,7 +11,7 @@ class EmptyStack implements \IteratorAggregate, Stackable
 
     public function peek()
     {
-        throw new StackIsEmpty;
+        throw new \RuntimeException("Can't peek empty stack");
     }
 
     public function push($value)
@@ -21,7 +21,7 @@ class EmptyStack implements \IteratorAggregate, Stackable
 
     public function pop()
     {
-        throw new StackIsEmpty;
+        throw new \RuntimeException("Can't pop empty stack");
     }
 
     public function reverse()

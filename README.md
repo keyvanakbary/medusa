@@ -35,7 +35,7 @@ $s = Medusa\Stack\Stack::createEmpty();
 $s1 = $s->push(1);
 $s2 = $s1->pop();
 echo $s1->peek();//1
-echo $s2->peek();//StackIsEmpty exception
+echo $s2->peek();//Runtime exception
 ```
 
 #### Complexity
@@ -58,7 +58,7 @@ $q = Medusa\Queue\Queue::createEmpty();
 $q1 = $q->enqueue(1);
 $q2 = $q1->dequeue();
 echo $q1->peek();//1
-echo $q2->peek();//QueueIsEmpty exception
+echo $q2->peek();//Runtime exception
 ```
 
 #### Complexity

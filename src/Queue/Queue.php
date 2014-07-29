@@ -4,7 +4,6 @@ namespace Medusa\Queue;
 
 use Medusa\Stack\Stack;
 use Medusa\Stack\Stackable;
-use Medusa\Stack\StackIsEmpty;
 
 class Queue implements \IteratorAggregate, Queueable
 {
@@ -31,8 +30,8 @@ class Queue implements \IteratorAggregate, Queueable
     {
         try {
             return $this->forwards->peek();
-        } catch (StackIsEmpty $e) {
-            throw new QueueIsEmpty;
+        } catch (\RuntimeException $e) {
+            throw new \RuntimeException("Can't peek empty queue");
         }
     }
 

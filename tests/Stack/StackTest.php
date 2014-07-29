@@ -6,7 +6,8 @@ class StackTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-     * @expectedException \Medusa\Stack\StackIsEmpty
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage peek empty stack
      */
     public function peekOnEmptyShouldThrowException()
     {
@@ -15,7 +16,8 @@ class StackTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Medusa\Stack\StackIsEmpty
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage pop empty stack
      */
     public function popOnEmptyShouldThrowException()
     {

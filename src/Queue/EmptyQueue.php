@@ -13,7 +13,7 @@ class EmptyQueue implements \IteratorAggregate, Queueable
 
     public function peek()
     {
-        throw new QueueIsEmpty;
+        throw new \RuntimeException("Can't peek empty queue");
     }
 
     public function enqueue($value)
@@ -23,7 +23,7 @@ class EmptyQueue implements \IteratorAggregate, Queueable
 
     public function dequeue()
     {
-        throw new QueueIsEmpty;
+        throw new \RuntimeException("Can't dequeue empty queue");
     }
 
     public function getIterator()

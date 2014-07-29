@@ -6,7 +6,8 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
-     * @expectedException \Medusa\Queue\QueueIsEmpty
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage peek empty queue
      */
     public function peekOnEmptyShouldThrowException()
     {
@@ -15,7 +16,8 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @expectedException \Medusa\Queue\QueueIsEmpty
+     * @expectedException \RuntimeException
+     * @expectedExceptionMessage dequeue empty queue
      */
     public function dequeOnEmptyShouldThrowException()
     {
