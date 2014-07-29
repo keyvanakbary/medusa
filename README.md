@@ -7,19 +7,14 @@
 Life would be a lot simpler if we had *immutable* data structures. Code would be easier to understand, easy to test and free of side-effects. Being *immutable* is not all, these data structures must be efficient. By making them *persistent*, collections reuse internal structure to minimize the number of operations needed to represent altered versions of an instance of a collection.
 
 ## Setup and Configuration
-Add the following to your `composer.json` file
-```json
-{
-    "require": {
-        "keyvanakbary/medusa": "*"
-    }
-}
-```
 
-Update the vendor libraries
+Use composer:
+
+    composer.phar require 'keyvanakbary/medusa:*'
+
+**Note**: Composer isn't installed yet? THen run the following command:
 
     curl -s http://getcomposer.org/installer | php
-    php composer.phar install
 
 ## Usage
 
