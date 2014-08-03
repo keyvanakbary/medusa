@@ -64,11 +64,11 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function popShouldNotAffectPreviousVersions()
     {
-        $s = $this->createStack(array(1, 2, 3));
+        $s = $this->createStack([1, 2, 3]);
 
         $s->pop();
 
-        $this->assertValues(array(3, 2, 1), $s);
+        $this->assertValues([3, 2, 1], $s);
     }
 
     /**
@@ -76,9 +76,9 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function popShouldRemoveHead()
     {
-        $s = $this->createStack(array(1, 2, 3));
+        $s = $this->createStack([1, 2, 3]);
 
-        $this->assertValues(array(2, 1), $s->pop());
+        $this->assertValues([2, 1], $s->pop());
     }
 
     /**
@@ -90,7 +90,7 @@ class StackTest extends \PHPUnit_Framework_TestCase
 
         $s->push(4);
 
-        $this->assertValues(array(), $s);
+        $this->assertValues([], $s);
     }
 
     /**
@@ -98,9 +98,9 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function pushShouldAddNewHead()
     {
-        $s = $this->createStack(array(1, 2, 3));
+        $s = $this->createStack([1, 2, 3]);
 
-        $this->assertValues(array(4, 3, 2, 1), $s->push(4));
+        $this->assertValues([4, 3, 2, 1], $s->push(4));
     }
 
     /**
@@ -108,9 +108,9 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function itShouldReverseTheValues()
     {
-        $s = $this->createStack(array(1, 2, 3));
+        $s = $this->createStack([1, 2, 3]);
 
-        $this->assertValues(array(1, 2, 3), $s->reverse());
+        $this->assertValues([1, 2, 3], $s->reverse());
     }
 
     /**
@@ -127,9 +127,9 @@ class StackTest extends \PHPUnit_Framework_TestCase
     public function provideStacksWithExpectedCount()
     {
         return array(
-            array(array(), 0),
-            array(array(1), 1),
-            array(array(1, 2, 3), 3)
+            array([], 0),
+            array([1], 1),
+            array([1, 2, 3], 3)
         );
     }
 }

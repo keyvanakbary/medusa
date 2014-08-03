@@ -29,9 +29,9 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function lastInShouldBeFirstOut()
     {
-        $q = $this->createQueue(array(1, 2, 3));
+        $q = $this->createQueue([1, 2, 3]);
 
-        $this->assertEquals(array(1, 2, 3), $this->dequeueValues($q));
+        $this->assertEquals([1, 2, 3], $this->dequeueValues($q));
     }
 
     private function createQueue(array $values)
@@ -46,7 +46,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
     private function dequeueValues(Queueable $queue)
     {
-        $values = array();
+        $values = [];
         foreach ($queue as $value) {
             $values[] = $value;
         }
@@ -59,11 +59,11 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function dequeueShouldNotAffectPreviousVersions()
     {
-        $q = $this->createQueue(array(1, 2, 3));
+        $q = $this->createQueue([1, 2, 3]);
 
         $q->dequeue();
 
-        $this->assertValues(array(1, 2, 3), $q);
+        $this->assertValues([1, 2, 3], $q);
     }
 
     private function assertValues(array $values, Queueable $queue)
@@ -76,9 +76,9 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function dequeueShouldRemoveLastElement()
     {
-        $q = $this->createQueue(array(1, 2, 3));
+        $q = $this->createQueue([1, 2, 3]);
 
-        $this->assertValues(array(2, 3), $q->dequeue());
+        $this->assertValues([2, 3], $q->dequeue());
     }
 
     /**
@@ -90,7 +90,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
         $s->enqueue(4);
 
-        $this->assertValues(array(), $s);
+        $this->assertValues([], $s);
     }
 
     /**
@@ -98,9 +98,9 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function enqueueShouldAppendValue()
     {
-        $s = $this->createQueue(array(1, 2, 3));
+        $s = $this->createQueue([1, 2, 3]);
 
-        $this->assertValues(array(1, 2, 3, 4), $s->enqueue(4));
+        $this->assertValues([1, 2, 3, 4], $s->enqueue(4));
     }
 
     /**
@@ -116,10 +116,10 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
     public function provideQueuesWithExpectedCount()
     {
-        return array(
-            array(array(), 0),
-            array(array(1), 1),
-            array(array(1, 2, 3), 3)
-        );
+        return [
+            [[], 0],
+            [[1], 1],
+            [[1, 2, 3], 3]
+        ];
     }
 }
