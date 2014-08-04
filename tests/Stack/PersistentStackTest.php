@@ -1,8 +1,8 @@
 <?php
 
-namespace Medusa;
+namespace Medusa\Stack;
 
-class StackTest extends \PHPUnit_Framework_TestCase
+class PersistentStackTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -11,7 +11,7 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function peekOnEmptyShouldThrowException()
     {
-        Stack::createEmpty()->peek();
+        PersistentStack::createEmpty()->peek();
     }
 
     /**
@@ -21,7 +21,7 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function popOnEmptyShouldThrowException()
     {
-        Stack::createEmpty()->pop();
+        PersistentStack::createEmpty()->pop();
     }
 
     /**
@@ -36,7 +36,7 @@ class StackTest extends \PHPUnit_Framework_TestCase
 
     private function createStack(array $values)
     {
-        $s = Stack::createEmpty();
+        $s = PersistentStack::createEmpty();
         foreach($values as $value) {
             $s = $s->push($value);
         }
@@ -44,12 +44,12 @@ class StackTest extends \PHPUnit_Framework_TestCase
         return $s;
     }
 
-    private function assertValues(array $values, Stackable $s)
+    private function assertValues(array $values, Stack $s)
     {
         $this->assertEquals($values, $this->popValues($s));
     }
 
-    private function popValues(Stackable $stack)
+    private function popValues(Stack $stack)
     {
         $values = array();
         foreach ($stack as $value) {
@@ -86,7 +86,7 @@ class StackTest extends \PHPUnit_Framework_TestCase
      */
     public function pushShouldNotAffectPreviousVersions()
     {
-        $s = Stack::createEmpty();
+        $s = PersistentStack::createEmpty();
 
         $s->push(4);
 

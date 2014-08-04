@@ -1,14 +1,14 @@
 <?php
 
-namespace Medusa;
+namespace Medusa\Stack;
 
-class Stack implements \IteratorAggregate, Stackable
+class PersistentStack implements \IteratorAggregate, Stack
 {
     private $head;
     private $tail;
     private $count;
 
-    public function __construct($head, Stackable $tail, $count)
+    public function __construct($head, Stack $tail, $count)
     {
         $this->head = $head;
         $this->tail = $tail;
@@ -32,7 +32,7 @@ class Stack implements \IteratorAggregate, Stackable
 
     public function push($value)
     {
-        return new Stack($value, $this, $this->count + 1);
+        return new PersistentStack($value, $this, $this->count + 1);
     }
 
     public function pop()
@@ -61,46 +61,5 @@ class Stack implements \IteratorAggregate, Stackable
             yield $stack->peek();
             $stack = $stack->pop();
         }
-    }
-}
-
-/**
- * @internal
- */
-class EmptyStack implements \IteratorAggregate, Stackable
-{
-    public function isEmpty()
-    {
-        return true;
-    }
-
-    public function peek()
-    {
-        throw new \RuntimeException("Can't peek empty stack");
-    }
-
-    public function push($value)
-    {
-        return new Stack($value, $this, 1);
-    }
-
-    public function pop()
-    {
-        throw new \RuntimeException("Can't pop empty stack");
-    }
-
-    public function reverse()
-    {
-        return new \EmptyIterator;
-    }
-
-    public function count()
-    {
-        return 0;
-    }
-
-    public function getIterator()
-    {
-        return new \EmptyIterator;
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Medusa;
+namespace Medusa\Queue;
 
-class QueueTest extends \PHPUnit_Framework_TestCase
+class PersistentQueueTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
@@ -11,7 +11,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function peekOnEmptyShouldThrowException()
     {
-        Queue::createEmpty()->peek();
+        PersistentQueue::createEmpty()->peek();
     }
 
     /**
@@ -21,7 +21,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function dequeOnEmptyShouldThrowException()
     {
-        Queue::createEmpty()->dequeue();
+        PersistentQueue::createEmpty()->dequeue();
     }
 
     /**
@@ -36,7 +36,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
 
     private function createQueue(array $values)
     {
-        $q = Queue::createEmpty();
+        $q = PersistentQueue::createEmpty();
         foreach ($values as $value) {
             $q = $q->enqueue($value);
         }
@@ -44,7 +44,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
         return $q;
     }
 
-    private function dequeueValues(Queueable $queue)
+    private function dequeueValues(Queue $queue)
     {
         $values = [];
         foreach ($queue as $value) {
@@ -66,7 +66,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
         $this->assertValues([1, 2, 3], $q);
     }
 
-    private function assertValues(array $values, Queueable $queue)
+    private function assertValues(array $values, Queue $queue)
     {
         $this->assertEquals($values, $this->dequeueValues($queue));
     }
@@ -86,7 +86,7 @@ class QueueTest extends \PHPUnit_Framework_TestCase
      */
     public function enqueueShouldNotAffectPreviousVersions()
     {
-        $s = Queue::createEmpty();
+        $s = PersistentQueue::createEmpty();
 
         $s->enqueue(4);
 

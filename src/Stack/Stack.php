@@ -1,8 +1,8 @@
 <?php
 
-namespace Medusa;
+namespace Medusa\Stack;
 
-interface Stackable extends \Traversable
+interface Stack extends \Traversable
 {
     public function push($value);
 

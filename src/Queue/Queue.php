@@ -1,8 +1,8 @@
 <?php
 
-namespace Medusa;
+namespace Medusa\Queue;
 
-interface Queueable extends \Traversable
+interface Queue extends \Traversable
 {
     public function isEmpty();
 

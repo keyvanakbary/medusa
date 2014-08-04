@@ -23,14 +23,14 @@ Update the vendor libraries
 
 ## Usage
 
-### Stack
+### Persistent Stack
 
 ```php
 <?php
 
 include 'vendor/autoload.php';
 
-$s = Medusa\Stack::createEmpty();
+$s = Medusa\Stack\PersistentStack::createEmpty();
 
 $s1 = $s->push(1);
 $s2 = $s1->pop();
@@ -48,13 +48,13 @@ isEmpty   | O(1)
 reverse   | O(N)
 count     | O(1)
 
-### Queue
+### Persistent Queue
 
 ```php
 <?php
 include 'vendor/autoload.php';
 
-$q = Medusa\Queue::createEmpty();
+$q = Medusa\Queue\PersistentQueue::createEmpty();
 
 $q1 = $q->enqueue(1);
 $q2 = $q1->dequeue();
