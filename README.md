@@ -68,5 +68,32 @@ operation | big-O
 isEmpty   | O(1)
 peek      | O(1)
 enqueue   | O(1)
-dequeue   | O(1) in average, O(N) in some cases
+dequeue   | O(1) in average, O(n) in some cases
 count     | O(1)
+
+### Persistent Binary Tree
+
+```php
+<?php
+include 'vendor/autoload.php';
+
+$t = Medusa\Tree\PersistentBinaryTree::createEmpty();
+
+$t1 = $t->add(1, 'one');
+$t2 = $t1->remove(1);
+echo $t1->search(1)->value();//one
+echo $t2->lookup(1);//Runtime exception
+```
+
+#### Complexity
+operation | big-O
+----------|------
+isEmpty   | O(1)
+value     | O(1)
+key       | O(1)
+search    | O(log<sub>2</sub>(n))
+add       | O(1)
+search    | O(log<sub>2</sub>(n))
+contains  | O(log<sub>2</sub>(n))
+height    | O(1)
+lookup    | O(log<sub>2</sub>(n))
