@@ -88,14 +88,14 @@ class PersistentAvlTree implements \IteratorAggregate, AvlTree
         $c = $this->compare($this->key, $key);
 
         if ($c === 0) {
-            $tree = $this->removeCurrentNode();
+            $t = $this->removeCurrentNode();
         } else if ($c > 0) {
-            $tree = new self($this->key, $this->value, $this->left, $this->right->remove($this->key));
+            $t = new self($this->key, $this->value, $this->left, $this->right->remove($this->key));
         } else {
-            $tree = new self($this->key, $this->value, $this->left->remove($this->key), $this->right);
+            $t = new self($this->key, $this->value, $this->left->remove($this->key), $this->right);
         }
 
-        return $this->makeBalanced($tree);
+        return $this->makeBalanced($t);
     }
 
     private function removeCurrentNode()
@@ -124,39 +124,39 @@ class PersistentAvlTree implements \IteratorAggregate, AvlTree
         return new self($next->key(), $next->value(), $this->left, $this->right->remove($next->key()));
     }
 
-    private function makeBalanced(AvlTree $tree)
+    private function makeBalanced(AvlTree $t)
     {
-        if ($this->isRightHeavy($tree)) {
-            if ($this->isLeftHeavy($tree->right())) {
-                return $this->doubleLeft($tree);
+        if ($this->isRightHeavy($t)) {
+            if ($this->isLeftHeavy($t->right())) {
+                return $this->doubleLeft($t);
             }
 
-            return $this->rotateLeft($tree);
+            return $this->rotateLeft($t);
         }
 
-        if ($this->isLeftHeavy($tree)) {
-            if ($this->isRightHeavy($tree->left())) {
-                return $this->doubleRight($tree);
+        if ($this->isLeftHeavy($t)) {
+            if ($this->isRightHeavy($t->left())) {
+                return $this->doubleRight($t);
             }
 
-            return $this->rotateRight($tree);
+            return $this->rotateRight($t);
         }
 
-        return $tree;
+        return $t;
     }
 
-    private function isRightHeavy(AvlTree $tree)
+    private function isRightHeavy(AvlTree $t)
     {
-        return $this->balance($tree) >= 2;
+        return $this->balance($t) >= 2;
     }
 
-    private function balance(AvlTree $tree)
+    private function balance(AvlTree $t)
     {
-        if ($tree->isEmpty()) {
+        if ($t->isEmpty()) {
             return 0;
         }
 
-        return $tree->right()->height() - $tree->left()->height();
+        return $t->right()->height() - $t->left()->height();
     }
 
     public function height()
@@ -164,9 +164,9 @@ class PersistentAvlTree implements \IteratorAggregate, AvlTree
         return $this->height;
     }
 
-    private function isLeftHeavy($tree)
+    private function isLeftHeavy(AvlTree $t)
     {
-        return $this->balance($tree) <= -2;
+        return $this->balance($t) <= -2;
     }
 
     public function contains($key)
@@ -176,57 +176,57 @@ class PersistentAvlTree implements \IteratorAggregate, AvlTree
 
     public function lookup($key)
     {
-        $tree = $this->search($key);
+        $t = $this->search($key);
 
-        if ($tree->isEmpty()) {
+        if ($t->isEmpty()) {
             throw new \RuntimeException('Key not found in tree');
         }
 
-        return $tree->value();
+        return $t->value();
     }
 
-    private function doubleLeft(AvlTree $tree)
+    private function doubleLeft(AvlTree $t)
     {
-        if ($tree->right()->isEmpty()) {
-            return $tree;
+        if ($t->right()->isEmpty()) {
+            return $t;
         }
 
         return
-            $this->rotateLeft(new self($tree->key(), $tree->value(), $tree->left(),
-                $this->rotateRight($tree->right())));
+            $this->rotateLeft(new self($t->key(), $t->value(), $t->left(),
+                $this->rotateRight($t->right())));
     }
 
-    private function rotateLeft(AvlTree $tree)
+    private function rotateLeft(AvlTree $t)
     {
-        if ($tree->right()->isEmpty()) {
-            return $tree;
+        if ($t->right()->isEmpty()) {
+            return $t;
         }
 
         return
-            new self($tree->right()->key(), $tree->right()->value(), $tree->right()->left(),
-                new self($tree->key(), $tree->value(), $tree->left(), $tree->right()->left()));
+            new self($t->right()->key(), $t->right()->value(), $t->right()->left(),
+                new self($t->key(), $t->value(), $t->left(), $t->right()->left()));
     }
 
-    private function doubleRight(AvlTree $tree)
+    private function doubleRight(AvlTree $t)
     {
-        if ($tree->left()->isEmpty()) {
-            return $tree;
+        if ($t->left()->isEmpty()) {
+            return $t;
         }
 
         return
-            $this->rotateRight(new self($tree->key(), $tree->value(),
-                $this->rotateLeft($tree->left()), $tree->right()));
+            $this->rotateRight(new self($t->key(), $t->value(),
+                $this->rotateLeft($t->left()), $t->right()));
     }
 
-    private function rotateRight(AvlTree $tree)
+    private function rotateRight(AvlTree $t)
     {
-        if ($tree->left()->isEmpty()) {
-            return $tree;
+        if ($t->left()->isEmpty()) {
+            return $t;
         }
 
         return
-            new self($tree->left()->key(), $tree->left()->value(), $tree->left()->left(),
-                new self($tree->key(), $tree->value(), $tree->left()->right(), $tree->right()));
+            new self($t->left()->key(), $t->left()->value(), $t->left()->left(),
+                new self($t->key(), $t->value(), $t->left()->right(), $t->right()));
     }
 
     public function getIterator()
