@@ -70,27 +70,33 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     * @dataProvider balancedTrees
+     * @dataProvider numItems
      */
-    public function shouldBeBalanced($numItems, $expectedHeight)
+    public function shouldBeBalanced($numItems)
     {
-        $t = PersistentBinaryTree::createEmpty();
-        for ($i = 0; $i < $numItems; $i++) {
-            $t = $t->add($i, $i);
-        }
+        $t = $this->createTree($numItems);
 
-        $this->assertEquals($expectedHeight, $t->height());
+        $this->assertLessThanOrEqual($this->heightInvariantFor($numItems), $t->height());
     }
 
-    public function balancedTrees()
+    private function heightInvariantFor($numItems)
     {
-        return [
-            [1, 1],
-            [3, 2],
-            [7, 3],
-            [15, 4],
-            [17, 5],
-        ];
+        return ceil(log($numItems + 1, 2));
+    }
+
+    private function createTree($numItems)
+    {
+        $t = PersistentBinaryTree::createEmpty();
+        for ($j = 0; $j < $numItems; $j++) {
+            $t = $t->add($j, $j);
+        }
+
+        return $t;
+    }
+
+    public function numItems()
+    {
+        return [[2], [4], [8], [16], [32], [64], [128], [256], [512]];
     }
 
     /**
@@ -103,12 +109,12 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
             ->add(2, 'two')
             ->add(3, 'three');
 
-        $this->assertContainValues(array(1 => 'one', 2 => 'two', 3 => 'three'), $t);
+        $this->assertContainValues([1 => 'one', 2 => 'two', 3 => 'three'], $t);
     }
 
     private function assertContainValues($expected, $tree)
     {
-        $values = array();
+        $values = [];
         foreach ($tree as $key => $value) {
             $values[$key] = $value;
         }
