@@ -39,7 +39,7 @@ class PersistentQueue implements \IteratorAggregate, Queue
 
     public function enqueue($value)
     {
-        return new PersistentQueue($this->forwards, $this->backwards->push($value), $this->count + 1);
+        return new self($this->forwards, $this->backwards->push($value), $this->count + 1);
     }
 
     public function dequeue()
@@ -47,14 +47,14 @@ class PersistentQueue implements \IteratorAggregate, Queue
         $f = $this->forwards->pop();
 
         if ($f->isEmpty()) {
-            return new PersistentQueue($f, $this->backwards, $this->count - 1);
+            return new self($f, $this->backwards, $this->count - 1);
         }
 
         if ($this->backwards->isEmpty()) {
-            return PersistentQueue::createEmpty();
+            return self::createEmpty();
         }
 
-        return new PersistentQueue($this->backwards->reverse(), PersistentStack::createEmpty(), $this->count - 1);
+        return new self($this->backwards->reverse(), PersistentStack::createEmpty(), $this->count - 1);
     }
 
     public function count()

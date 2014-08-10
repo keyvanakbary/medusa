@@ -32,7 +32,7 @@ class PersistentStack implements \IteratorAggregate, Stack
 
     public function push($value)
     {
-        return new PersistentStack($value, $this, $this->count + 1);
+        return new self($value, $this, $this->count + 1);
     }
 
     public function pop()

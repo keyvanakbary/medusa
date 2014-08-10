@@ -68,11 +68,11 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         $c = $this->compare($this->key, $key);
 
         if ($c === 0) {
-            return new PersistentBinaryTree($key, $value, $this->left, $this->right);
+            return new self($key, $value, $this->left, $this->right);
         } else if ($c > 0) {
-            return $this->makeBalanced(new PersistentBinaryTree($this->key, $this->value, $this->left, $this->right->add($key, $value)));
+            return $this->makeBalanced(new self($this->key, $this->value, $this->left, $this->right->add($key, $value)));
         } else {
-            return $this->makeBalanced(new PersistentBinaryTree($this->key, $this->value, $this->left->add($key, $value), $this->right));
+            return $this->makeBalanced(new self($this->key, $this->value, $this->left->add($key, $value), $this->right));
         }
     }
 
@@ -90,9 +90,9 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         if ($c === 0) {
             $tree = $this->removeCurrentNode();
         } else if ($c > 0) {
-            $tree = new PersistentBinaryTree($this->key, $this->value, $this->left, $this->right->remove($this->key));
+            $tree = new self($this->key, $this->value, $this->left, $this->right->remove($this->key));
         } else {
-            $tree = new PersistentBinaryTree($this->key, $this->value, $this->left->remove($this->key), $this->right);
+            $tree = new self($this->key, $this->value, $this->left->remove($this->key), $this->right);
         }
 
         return $this->makeBalanced($tree);
@@ -121,7 +121,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
             $next = $next->left();
         }
 
-        return new PersistentBinaryTree($next->key(), $next->value(), $this->left, $this->right->remove($next->key()));
+        return new self($next->key(), $next->value(), $this->left, $this->right->remove($next->key()));
     }
 
     private function makeBalanced(BinaryTree $tree)
@@ -192,7 +192,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         }
 
         return
-            $this->rotateLeft(new PersistentBinaryTree($tree->key(), $tree->value(), $tree->left(),
+            $this->rotateLeft(new self($tree->key(), $tree->value(), $tree->left(),
                 $this->rotateRight($tree->right())));
     }
 
@@ -203,8 +203,8 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         }
 
         return
-            new PersistentBinaryTree($tree->right()->key(), $tree->right()->value(), $tree->right()->left(),
-                new PersistentBinaryTree($tree->key(), $tree->value(), $tree->left(), $tree->right()->left()));
+            new self($tree->right()->key(), $tree->right()->value(), $tree->right()->left(),
+                new self($tree->key(), $tree->value(), $tree->left(), $tree->right()->left()));
     }
 
     private function doubleRight(BinaryTree $tree)
@@ -214,7 +214,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         }
 
         return
-            $this->rotateRight(new PersistentBinaryTree($tree->key(), $tree->value(),
+            $this->rotateRight(new self($tree->key(), $tree->value(),
                 $this->rotateLeft($tree->left()), $tree->right()));
     }
 
@@ -225,8 +225,8 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         }
 
         return
-            new PersistentBinaryTree($tree->left()->key(), $tree->left()->value(), $tree->left()->left(),
-                new PersistentBinaryTree($tree->key(), $tree->value(), $tree->left()->right(), $tree->right()));
+            new self($tree->left()->key(), $tree->left()->value(), $tree->left()->left(),
+                new self($tree->key(), $tree->value(), $tree->left()->right(), $tree->right()));
     }
 
     public function getIterator()
