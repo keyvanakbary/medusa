@@ -4,14 +4,14 @@ namespace Medusa\Tree;
 
 use Medusa\Stack\PersistentStack;
 
-class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
+class PersistentAvlTree implements \IteratorAggregate, AvlTree
 {
     private $key;
     private $value;
     private $left;
     private $right;
 
-    public function __construct($key, $value, BinaryTree $left, BinaryTree $right)
+    public function __construct($key, $value, AvlTree $left, AvlTree $right)
     {
         $this->key = $key;
         $this->value = $value;
@@ -22,7 +22,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
 
     public static function createEmpty()
     {
-        return new EmptyBinaryTree;
+        return new EmptyAvlTree;
     }
 
     public function isEmpty()
@@ -124,7 +124,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         return new self($next->key(), $next->value(), $this->left, $this->right->remove($next->key()));
     }
 
-    private function makeBalanced(BinaryTree $tree)
+    private function makeBalanced(AvlTree $tree)
     {
         if ($this->isRightHeavy($tree)) {
             if ($this->isLeftHeavy($tree->right())) {
@@ -145,12 +145,12 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         return $tree;
     }
 
-    private function isRightHeavy(BinaryTree $tree)
+    private function isRightHeavy(AvlTree $tree)
     {
         return $this->balance($tree) >= 2;
     }
 
-    private function balance(BinaryTree $tree)
+    private function balance(AvlTree $tree)
     {
         if ($tree->isEmpty()) {
             return 0;
@@ -185,7 +185,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
         return $tree->value();
     }
 
-    private function doubleLeft(BinaryTree $tree)
+    private function doubleLeft(AvlTree $tree)
     {
         if ($tree->right()->isEmpty()) {
             return $tree;
@@ -196,7 +196,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
                 $this->rotateRight($tree->right())));
     }
 
-    private function rotateLeft(BinaryTree $tree)
+    private function rotateLeft(AvlTree $tree)
     {
         if ($tree->right()->isEmpty()) {
             return $tree;
@@ -207,7 +207,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
                 new self($tree->key(), $tree->value(), $tree->left(), $tree->right()->left()));
     }
 
-    private function doubleRight(BinaryTree $tree)
+    private function doubleRight(AvlTree $tree)
     {
         if ($tree->left()->isEmpty()) {
             return $tree;
@@ -218,7 +218,7 @@ class PersistentBinaryTree implements \IteratorAggregate, BinaryTree
                 $this->rotateLeft($tree->left()), $tree->right()));
     }
 
-    private function rotateRight(BinaryTree $tree)
+    private function rotateRight(AvlTree $tree)
     {
         if ($tree->left()->isEmpty()) {
             return $tree;

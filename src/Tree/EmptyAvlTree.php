@@ -2,7 +2,7 @@
 
 namespace Medusa\Tree;
 
-class EmptyBinaryTree implements \IteratorAggregate, BinaryTree
+class EmptyAvlTree implements \IteratorAggregate, AvlTree
 {
     public function isEmpty()
     {
@@ -36,7 +36,7 @@ class EmptyBinaryTree implements \IteratorAggregate, BinaryTree
 
     public function add($key, $value)
     {
-        return new PersistentBinaryTree($key, $value, $this, $this);
+        return new PersistentAvlTree($key, $value, $this, $this);
     }
 
     public function remove($key)

@@ -2,14 +2,14 @@
 
 namespace Medusa\Tree;
 
-class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
+class PersistentAvlTreeTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @test
      */
     public function shouldAddKeyWithValue()
     {
-        $t = PersistentBinaryTree::createEmpty()->add(1, 'value');
+        $t = PersistentAvlTree::createEmpty()->add(1, 'value');
 
         $this->assertEquals('value', $t->lookup(1));
     }
@@ -19,7 +19,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldRemoveKey()
     {
-        $t = PersistentBinaryTree::createEmpty()->add(1, 'value')->remove(1);
+        $t = PersistentAvlTree::createEmpty()->add(1, 'value')->remove(1);
 
         $this->assertFalse($t->contains(1));
     }
@@ -31,7 +31,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function lookupOnNonExistingKeyShouldThrowException()
     {
-        PersistentBinaryTree::createEmpty()->lookup(1);
+        PersistentAvlTree::createEmpty()->lookup(1);
     }
 
     /**
@@ -39,7 +39,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldReplaceKey()
     {
-        $t = PersistentBinaryTree::createEmpty()
+        $t = PersistentAvlTree::createEmpty()
             ->add(1, 'first')
             ->add(1, 'last');
 
@@ -51,7 +51,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function addShouldNotModifyPreviousVersions()
     {
-        $t1 = PersistentBinaryTree::createEmpty()->add(1, 'first');
+        $t1 = PersistentAvlTree::createEmpty()->add(1, 'first');
         $t1->add(1, 'last');
 
         $this->assertEquals('first', $t1->lookup(1));
@@ -62,7 +62,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function removeShouldNotModifyPreviousVersions()
     {
-        $t = PersistentBinaryTree::createEmpty()->add(1, 'first');
+        $t = PersistentAvlTree::createEmpty()->add(1, 'first');
         $t->remove(1);
 
         $this->assertTrue($t->contains(1));
@@ -86,7 +86,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
 
     private function createTree($numItems)
     {
-        $t = PersistentBinaryTree::createEmpty();
+        $t = PersistentAvlTree::createEmpty();
         for ($j = 0; $j < $numItems; $j++) {
             $t = $t->add($j, $j);
         }
@@ -104,7 +104,7 @@ class PersistentBinaryTreeTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldContainValues()
     {
-        $t = PersistentBinaryTree::createEmpty()
+        $t = PersistentAvlTree::createEmpty()
             ->add(1, 'one')
             ->add(2, 'two')
             ->add(3, 'three');

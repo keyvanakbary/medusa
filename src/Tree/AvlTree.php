@@ -2,7 +2,7 @@
 
 namespace Medusa\Tree;
 
-interface BinaryTree extends \Traversable
+interface AvlTree extends \Traversable
 {
     public function isEmpty();
 

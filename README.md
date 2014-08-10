@@ -45,7 +45,7 @@ push      | O(1)
 peek      | O(1)
 pop       | O(1)
 isEmpty   | O(1)
-reverse   | O(N)
+reverse   | O(n)
 count     | O(1)
 
 ### Persistent Queue
@@ -71,13 +71,13 @@ enqueue   | O(1)
 dequeue   | O(1) in average, O(n) in some cases
 count     | O(1)
 
-### Persistent Binary Tree
+### Persistent AVL Tree
 
 ```php
 <?php
 include 'vendor/autoload.php';
 
-$t = Medusa\Tree\PersistentBinaryTree::createEmpty();
+$t = Medusa\Tree\PersistentAvlTree::createEmpty();
 
 $t1 = $t->add(1, 'one');
 $t2 = $t1->remove(1);
@@ -91,9 +91,9 @@ operation | big-O
 isEmpty   | O(1)
 value     | O(1)
 key       | O(1)
-search    | O(log<sub>2</sub>(n))
+search    | O(log(n))
 add       | O(1)
-search    | O(log<sub>2</sub>(n))
-contains  | O(log<sub>2</sub>(n))
+search    | O(log(n))
+contains  | O(log(n))
 height    | O(1)
-lookup    | O(log<sub>2</sub>(n))
+lookup    | O(log(n))
