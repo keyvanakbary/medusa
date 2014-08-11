@@ -2,7 +2,7 @@
 
 namespace Medusa\Tree;
 
-class EmptyAvlTree implements \IteratorAggregate, BinaryTree
+class EmptyRedBlackTree implements \IteratorAggregate, RedBlackTree
 {
     public function isEmpty()
     {
@@ -24,6 +24,16 @@ class EmptyAvlTree implements \IteratorAggregate, BinaryTree
         throw new \RuntimeException("Can't get right of empty tree");
     }
 
+    public function color()
+    {
+        return RedBlackTree::BLACK;
+    }
+
+    public function isRoot()
+    {
+        return false;
+    }
+
     public function key()
     {
         throw new \RuntimeException("Can't get key of empty tree");
@@ -36,7 +46,7 @@ class EmptyAvlTree implements \IteratorAggregate, BinaryTree
 
     public function add($key, $value)
     {
-        return new PersistentAvlTree($key, $value, $this, $this);
+        return new PersistentRedBlackTree($key, $value, $this, $this, PersistentRedBlackTree::BLACK, true);
     }
 
     public function remove($key)
@@ -57,6 +67,11 @@ class EmptyAvlTree implements \IteratorAggregate, BinaryTree
     public function lookup($key)
     {
         throw new \RuntimeException("Key not found in tree");
+    }
+
+    public function removeMin()
+    {
+        throw new \RuntimeException("Can't remove min of empty tree");
     }
 
     public function getIterator()

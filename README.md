@@ -97,3 +97,32 @@ search    | O(log(n))
 contains  | O(log(n))
 height    | O(1)
 lookup    | O(log(n))
+
+### Persistent Red-Black Tree
+
+```php
+<?php
+include 'vendor/autoload.php';
+
+$t = Medusa\Tree\PersistentRedBlackTree::createEmpty();
+
+$t1 = $t->add(1, 'one');
+$t2 = $t1->remove(1);
+echo $t1->search(1)->value();//one
+echo $t2->lookup(1);//Runtime exception
+```
+
+#### Complexity
+operation | big-O
+----------|------
+isEmpty   | O(1)
+value     | O(1)
+key       | O(1)
+search    | O(log(n))
+add       | O(1)
+search    | O(log(n))
+contains  | O(log(n))
+height    | O(1)
+lookup    | O(log(n))
+min       | O(log(n))
+removeMin | O(log(n))
