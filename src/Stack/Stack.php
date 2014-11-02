@@ -12,7 +12,5 @@ interface Stack extends \Traversable
 
     public function isEmpty();
 
-    public function reverse();
-
     public function count();
 }

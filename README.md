@@ -45,7 +45,6 @@ push      | O(1)
 peek      | O(1)
 pop       | O(1)
 isEmpty   | O(1)
-reverse   | O(n)
 count     | O(1)
 
 ### Persistent Queue

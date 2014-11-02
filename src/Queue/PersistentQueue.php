@@ -54,7 +54,17 @@ class PersistentQueue implements \IteratorAggregate, Queue
             return self::createEmpty();
         }
 
-        return new self($this->backwards->reverse(), PersistentStack::createEmpty(), $this->count - 1);
+        return new self($this->reversedBackwards(), PersistentStack::createEmpty(), $this->count - 1);
+    }
+
+    private function reversedBackwards()
+    {
+        $s = PersistentStack::createEmpty();
+        foreach ($this->backwards as $value) {
+            $s = $s->push($value);
+        }
+
+        return $s;
     }
 
     public function count()
@@ -65,6 +75,6 @@ class PersistentQueue implements \IteratorAggregate, Queue
     public function getIterator()
     {
         foreach ($this->forwards as $value) yield $value;
-        foreach ($this->backwards->reverse() as $value) yield $value;
+        foreach ($this->reversedBackwards() as $value) yield $value;
     }
 }

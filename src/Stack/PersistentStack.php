@@ -40,16 +40,6 @@ class PersistentStack implements \IteratorAggregate, Stack
         return $this->tail;
     }
 
-    public function reverse()
-    {
-        $s = new EmptyStack;
-        foreach ($this->getIterator() as $value) {
-            $s = $s->push($value);
-        }
-
-        return $s;
-    }
-
     public function count()
     {
         return $this->count;

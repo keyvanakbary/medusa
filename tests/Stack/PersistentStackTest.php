@@ -105,16 +105,6 @@ class PersistentStackTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @test
-     */
-    public function itShouldReverseTheValues()
-    {
-        $s = $this->createStack([1, 2, 3]);
-
-        $this->assertValues([1, 2, 3], $s->reverse());
-    }
-
-    /**
-     * @test
      * @dataProvider provideStacksWithExpectedCount
      */
     public function itShouldCountNumberOfElements($values, $expectedCount)
