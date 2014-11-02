@@ -2,7 +2,7 @@
 
 [![Build Status](https://secure.travis-ci.org/keyvanakbary/medusa.svg?branch=master)](http://travis-ci.org/keyvanakbary/medusa)
 
-*Immutable* and *persistent* data structures for PHP.
+*Immutable* and *persistent* collections for PHP.
 
 Life would be a lot simpler if we had *immutable* data structures. Code would be easier to understand, easy to test and free of side-effects. Being *immutable* is not all, these data structures must be efficient. By making them *persistent*, collections reuse internal structure to minimize the number of operations needed to represent altered versions of an instance of a collection.
 

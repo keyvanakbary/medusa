@@ -1,7 +1,7 @@
 {
     "name": "keyvanakbary/medusa",
-    "description": "Immutable and persistent data structures",
-    "keywords": ["immutable", "persistent", "data structures"],
+    "description": "Immutable and persistent collections",
+    "keywords": ["immutable", "persistent", "collections", "data structures"],
     "minimum-stability": "stable",
     "authors": [
         {
