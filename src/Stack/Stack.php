@@ -2,7 +2,7 @@
 
 namespace Medusa\Stack;
 
-interface Stack extends \Traversable
+interface Stack extends \Traversable, \Countable
 {
     public function push($value);
 
@@ -11,6 +11,4 @@ interface Stack extends \Traversable
     public function pop();
 
     public function isEmpty();
-
-    public function count();
 }
