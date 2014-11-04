@@ -2,7 +2,7 @@
 
 namespace Medusa\Queue;
 
-interface Queue extends \Traversable
+interface Queue extends \Traversable, \Countable
 {
     public function isEmpty();
 
@@ -11,6 +11,4 @@ interface Queue extends \Traversable
     public function enqueue($value);
 
     public function dequeue();
-
-    public function count();
 }
