@@ -2,6 +2,7 @@
     "name": "keyvanakbary/medusa",
     "description": "Immutable and persistent collections",
     "keywords": ["immutable", "persistent", "collections", "data structures"],
+    "license": "MIT",
     "minimum-stability": "stable",
     "authors": [
         {
