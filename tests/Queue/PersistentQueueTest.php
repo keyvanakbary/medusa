@@ -84,6 +84,19 @@ class PersistentQueueTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function dequeueShouldRemoveMoreThanOneElement()
+    {
+        $q = $this->createQueue([1, 2, 3, 4, 5]);
+
+        $q = $q->dequeue();
+        $q = $q->dequeue();
+
+        $this->assertValues([3, 4, 5], $q);
+    }
+
+    /**
+     * @test
+     */
     public function enqueueShouldNotAffectPreviousVersions()
     {
         $s = PersistentQueue::createEmpty();
