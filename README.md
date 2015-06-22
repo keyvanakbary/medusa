@@ -6,30 +6,18 @@
 
 Life would be a lot simpler if we had *immutable* data structures. Code would be easier to understand, easy to test and free of side-effects. Being *immutable* is not all, these data structures must be efficient. By making them *persistent*, collections reuse internal structure to minimize the number of operations needed to represent altered versions of an instance of a collection.
 
-## Setup and Configuration
-Add the following to your `composer.json` file
-```json
-{
-    "require": {
-        "keyvanakbary/medusa": "*"
-    }
-}
-```
 
-Update the vendor libraries
+## Installation
 
-    curl -s http://getcomposer.org/installer | php
-    php composer.phar install
+To install this library, run the command below and you will get the latest version
+
+    composer require keyvanakbary/medusa
 
 ## Usage
 
 ### Persistent Stack
 
 ```php
-<?php
-
-include 'vendor/autoload.php';
-
 $s = Medusa\Stack\PersistentStack::createEmpty();
 
 $s1 = $s->push(1);
@@ -50,9 +38,6 @@ count     | O(1)
 ### Persistent Queue
 
 ```php
-<?php
-include 'vendor/autoload.php';
-
 $q = Medusa\Queue\PersistentQueue::createEmpty();
 
 $q1 = $q->enqueue(1);
@@ -73,9 +58,6 @@ count     | O(1)
 ### Persistent AVL Tree
 
 ```php
-<?php
-include 'vendor/autoload.php';
-
 $t = Medusa\Tree\PersistentAvlTree::createEmpty();
 
 $t1 = $t->add(1, 'one');
@@ -100,9 +82,6 @@ lookup    | O(log(n))
 ### Persistent Red-Black Tree
 
 ```php
-<?php
-include 'vendor/autoload.php';
-
 $t = Medusa\Tree\PersistentRedBlackTree::createEmpty();
 
 $t1 = $t->add(1, 'one');
