@@ -42,19 +42,18 @@ class PersistentQueue implements \IteratorAggregate, Queue
         return new self($this->forwards, $this->backwards->push($value), $this->count + 1);
     }
 
-    public function dequeue()
-    {
+    public function dequeue() {
         $f = $this->forwards->pop();
 
-        if ($f->isEmpty()) {
-            return new self($f, $this->backwards, $this->count - 1);
-        }
-
-        if ($this->backwards->isEmpty()) {
+        if ($f->isEmpty() && $this->backwards->isEmpty()) {
             return self::createEmpty();
         }
 
-        return new self($this->reversedBackwards(), PersistentStack::createEmpty(), $this->count - 1);
+        if ($f->isEmpty()) {
+            return new self($this->reversedBackwards(), PersistentStack::createEmpty(), $this->count - 1);
+        }
+
+        return new self($f, $this->backwards, $this->count - 1);
     }
 
     private function reversedBackwards()
