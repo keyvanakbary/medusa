@@ -72,7 +72,6 @@ operation | big-O
 isEmpty   | O(1)
 value     | O(1)
 key       | O(1)
-search    | O(log(n))
 add       | O(1)
 search    | O(log(n))
 contains  | O(log(n))
