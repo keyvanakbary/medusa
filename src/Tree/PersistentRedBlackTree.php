@@ -309,7 +309,7 @@ class PersistentRedBlackTree implements \IteratorAggregate, RedBlackTree
 
     public function search($key)
     {
-        $c = $this->compare($this->key, $key);
+        $c = $this->compare($key, $this->key);
 
         if ($c === 0) {
             return $this;
